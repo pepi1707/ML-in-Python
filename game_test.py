@@ -10,7 +10,7 @@ def mlp(x, sizes, activation=tf.tanh, output_activation=None):
     return tf.layers.dense(x, units=sizes[-1], activation=output_activation)
 
 def train(env_name='CartPole-v0', hidden_sizes=[32], lr=5e-3, 
-          epochs=100, batch_size=70, render=True):
+          epochs=100, batch_size=1, render=True):
 
     # make environment, check spaces, get obs / act dims
     env = gym.make(env_name)
@@ -117,7 +117,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--env_name', '--env', type=str, default='CartPole-v0')
     parser.add_argument('--render', action='store_true')
-    parser.add_argument('--lr', type=float, default=5e-3)
+    parser.add_argument('--lr', type=float, default=1e-2)
     args = parser.parse_args()
     print('\nUsing simplest formulation of policy gradient.\n')
     train(env_name=args.env_name, render=True, lr=args.lr)
